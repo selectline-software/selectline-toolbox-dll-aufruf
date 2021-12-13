@@ -1,14 +1,23 @@
 # Toolbox DLL-Aufruf
 
-Dieses Beispiel hier sol als Anleitung und Inspiration dienen, eine DLL aufzusetzen, deren Funktionen in der SelectLine Warenwirtschaft ausgelesen, dargestellt und aufgerufen werden können.
+In der SelectLine Warenwirtschaft gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit einen Toolbox-DLL-Aufruf einzubinden.
+Spezielle DLLs können dann von der SelectLine Warenwirtschaft angesprochen werden. Ebenso können hier Parameter an die DLL übergeben, als auch Ergebnisse zur Warenwirtschaft zurückgesendet werden.
+Dabei stellt Ihnen die SelectLine Warenwirtschaft ebenfalls Ihre Funktionen und Eingabe-, als auch Ausgabeparameter optisch aufbereitet dar.
 
+Um dieses Feature nutzen zu können, muss Ihre DLL jedoch eine spezielle Schnittstelle bereitstellen.
+Daher bieten wir Ihnen hier einige Beispiele an, um Ihnen die Anbindung verständlich darzulegen oder einmal auszuprobieren.
 
-Zunächst einmal ist eine Class Library zu erzeugen, die unsere DLL darstellt.
+In dem Beispiel `Delphi-Example1` finden Sie eine DLL, in der eine Funktion Ihnen zwei beliebige Werte addiert und das Ergebnis in einer Datei `example.txt` unter `C:\Temp` ablegt.
+Weiterhin steht eine Funktionalität zur Verfügung, die einen beliebigen Text in einem kleinen Fenster darstellt und ggf. auf ihren Standardwert zurückgreift, sollte kein Text vom Benutzer angegeben werden.
+
+Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung.
+Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht.
+In Zukunft wird es ein weiteres Beispiel geben, indem die Rückgabewerte Ihrer Funktionen an die Warenwirtschaft gesendet werden.
 
 ## Funktionen mit Parametern aufrufen 
 
-Dazu folgen Sie bitte den nachfolgenden Schritten:
-1.	Eigene Funktionen implementieren
+1.	Zunächst einmal ist eine Class Library zu erzeugen, die später unsere DLL darstellt.	
+2.	Eigene Funktionen implementieren
     
     a.	Verwenden Sie die Konvention `stdcall` für jede Funktion, die Sie später exportieren wollen.
 
@@ -16,11 +25,10 @@ Dazu folgen Sie bitte den nachfolgenden Schritten:
 ```
 exports
   EigeneFunktionA,
-  EigeneFunktionB, 
-  …;
+  ...;
 ```
 
-2.	Schnittstellen Models implementieren (siehe vollständige Modelle am Ende unten)
+3.	Schnittstellen Models implementieren (siehe vollständige Modelle am Ende unten)
 
     a.	Darin werden Sie die Objekte zur Kommunikation mit der SelectLine Warenwirtschaft finden:
 
@@ -36,7 +44,7 @@ exports
      
      * Record zur Definition der DLL-Informationen
 
-3.	Bereitstellen der Funktion `GetToolBoxInfoW` , die den Pointer zu Ihren DLL-Informationen vom Typen `PToolBoxFctsW` zurückgibt:
+4.	Bereitstellen der Funktion `GetToolBoxInfoW` , die den Pointer zu Ihren DLL-Informationen vom Typen `PToolBoxFctsW` zurückgibt:
 
     a.	Die dort zurückgebenen DLL-Informationen sehen Sie später in der SelectLine Warenwirtschaft, sobald Sie diese DLL in der SelectLine Warenwirtschaft eingebunden haben.
 
@@ -47,14 +55,14 @@ begin
 end;
 ```
 
-4.	Funktion exportieren
+5.	Funktion exportieren
 
 ```
 exports
   GetToolBoxInfoW;
 ```
 
-5.	Globale Konstante zu den DLL-Informationen definieren
+6.	Globale Konstante zu den DLL-Informationen definieren
 
 ```
 CDllInformation : TToolBoxFctsW =
@@ -69,7 +77,7 @@ CDllInformation : TToolBoxFctsW =
 );
 ```
 
-6.	Globale Konstanten zu den Funktionen der DLL definieren
+7.	Globale Konstanten zu den Funktionen der DLL definieren
 
     a.	Damit bekommen Sie in der SelectLine Warenwirtschaft die Möglichkeit, die DLL-Funktionalitäten inkl. Parameter detailliert gelistet zu bekommen.
 
@@ -79,28 +87,28 @@ CFunctionsInfo : array[0..CFunctionsCount - 1] of TToolBoxFctInfoW =
 (
     (
         Size        : sizeof(TToolBoxFctInfoW);
-        Name        : 'SaveToFile';
-        Description : 'Sum up two values and save result to file';
+        Name        : 'FunctionA';
+        Description : 'Here you can describe your function';
         Kind        : tbxcCallParams;
-        ParamsCount : CSaveToFileParamsCount;
-        Params      : @CSaveToFileParams;
+        ParamsCount : CFunctionAParamsCount;
+        Params      : @CFunctionAParams;
     )
 );
 ```
 
-7.	Globale Konstanten zu den Funktionsparametern der DLL definieren
+8.	Globale Konstanten zu den Funktionsparametern der DLL definieren
 
 ```
-// --- parameter of function save to file  ----
-CSaveToFileParamsCount = 2;
-CSaveToFileParams : array[0..CSaveToFileParamsCount - 1] of TToolBoxFctParamW = (
+// --- parameter of function A  ----
+CFunctionAParamsCount = 2;
+CFunctionAParams : array[0..CFunctionACount - 1] of TToolBoxFctParamW = (
     (
         Size        : sizeof(TToolBoxFctParamW);
         Name        : 'a';
         Description : 'first value';
         Typ         : tbxtInteger;
         Direction   : tbxdOut;
-        IsDefault   : false; 		//Pflichtfeld: ja oder nein?
+        IsDefault   : false; 			// Determines whether the parameter is a mandatory field
         Default     : '0'
     ),
     (
@@ -109,7 +117,7 @@ CSaveToFileParams : array[0..CSaveToFileParamsCount - 1] of TToolBoxFctParamW = 
         Description : 'second value';
         Typ         : tbxtInteger;
         Direction   : tbxdOut;
-        IsDefault   : false; 			//Pflichtfeld: ja oder nein?
+        IsDefault   : false; 			// Determines whether the parameter is a mandatory field
         Default     : '0'
     )
 );
@@ -150,10 +158,10 @@ type
         Size            : integer;              // sizeof(TToolBoxFctParamW)
         Name            : PWideChar;
         Description     : PWideChar;
-        Dummy           : Byte;                 // keine Relevanz, jedoch nicht zu löschen!
+        Dummy           : Byte;                 // This has no relevance, but must not be deleted
         Typ             : TToolBoxParamType;
         Direction       : TToolBoxParamDirection;
-        IsDefault       : boolean;              // Is field required?
+        IsDefault       : boolean;              // Determines whether the parameter is a mandatory field
         Default         : PWideChar;            // default value
   end;
   PToolBoxFctParamW  = ^TToolBoxFctParamW;
@@ -164,7 +172,7 @@ type
     Name                : PWideChar;
     Description         : PWideChar;
     Kind                : TToolBoxCallKind;
-    Dummy               : Byte;                // keine Relevanz, jedoch nicht zu löschen!
+    Dummy               : Byte;                // This has no relevance, but must not be deleted
     ParamsCount         : integer;
     Params              : PToolBoxFctParamW;
   end;
