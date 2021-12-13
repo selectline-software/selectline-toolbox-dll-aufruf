@@ -1,14 +1,27 @@
 # Toolbox DLL-Aufruf
 
 In der SelectLine Warenwirtschaft gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit einen Toolbox-DLL-Aufruf einzubinden.
+
+![image](https://user-images.githubusercontent.com/34538107/145825177-f2378e15-daff-4116-a39e-61caa2ac9660.png)
+
 Spezielle DLLs können dann von der SelectLine Warenwirtschaft angesprochen werden. Ebenso können hier Parameter an die DLL übergeben, als auch Ergebnisse zur Warenwirtschaft zurückgesendet werden.
-Dabei stellt Ihnen die SelectLine Warenwirtschaft ebenfalls Ihre Funktionen und Eingabe-, als auch Ausgabeparameter optisch aufbereitet dar.
+
+![image](https://user-images.githubusercontent.com/34538107/145825729-28edc780-1297-40f1-9eb6-7108fc481bc3.png)
+
+Dafür stellt Ihnen die SelectLine Warenwirtschaft ebenfalls Ihre Funktionen und Eingabe-, als auch Ausgabeparameter optisch aufbereitet dar.
+
+![image](https://user-images.githubusercontent.com/34538107/145825405-6bd74054-14a9-4b72-ae6c-f3386401c796.png)
 
 Um dieses Feature nutzen zu können, muss Ihre DLL jedoch eine spezielle Schnittstelle bereitstellen.
 Daher bieten wir Ihnen hier einige Beispiele an, um Ihnen die Anbindung verständlich darzulegen oder einmal auszuprobieren.
 
 In dem Beispiel `Delphi-Example1` finden Sie eine DLL, in der eine Funktion Ihnen zwei beliebige Werte addiert und das Ergebnis in einer Datei `example.txt` unter `C:\Temp` ablegt.
+
+![image](https://user-images.githubusercontent.com/34538107/145825474-68427f3b-3a68-467c-a071-beabfb623053.png)
+
 Weiterhin steht eine Funktionalität zur Verfügung, die einen beliebigen Text in einem kleinen Fenster darstellt und ggf. auf ihren Standardwert zurückgreift, sollte kein Text vom Benutzer angegeben werden.
+
+![image](https://user-images.githubusercontent.com/34538107/145825540-72f961c4-a668-4fba-b21c-b4391b70b12e.png)
 
 Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung.
 Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht.
