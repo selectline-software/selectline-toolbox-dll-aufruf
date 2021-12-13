@@ -26,10 +26,10 @@ type
     Size        : integer;      // sizeof(TToolBoxFctParamW)
     Name        : PWideChar;
     Description : PWideChar;
-    Dummy       : Byte;         // hier war früher  Kind: TToolBoxParamKind; der Recordaufbau muss aber bleiben
+    Dummy       : Byte;         // This has no relevance, but must not be deleted
     Typ         : TToolBoxParamType;
     Direction   : TToolBoxParamDirection;
-    IsDefault   : boolean;      // Is field required?
+    IsDefault   : boolean;      // Determines whether the parameter is a mandatory field
     Default     : PWideChar;    // default value
   end;
   PToolBoxFctParamW  = ^TToolBoxFctParamW;
@@ -40,7 +40,7 @@ type
     Name        : PWideChar;
     Description : PWideChar;
     Kind        : TToolBoxCallKind;
-    Dummy       : Byte;       // hier war früher  ParamsKind: TToolBoxParamsKind; der Recordaufbau muss aber bleiben
+    Dummy       : Byte;       // This has no relevance, but must not be deleted
     ParamsCount : integer;
     Params      : PToolBoxFctParamW;
   end;
