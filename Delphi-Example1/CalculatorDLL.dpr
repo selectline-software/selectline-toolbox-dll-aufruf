@@ -1,4 +1,4 @@
-library Calc;
+library CalculatorDLL;
 
 { Wichtiger Hinweis zur DLL-Speicherverwaltung: ShareMem muss die erste
   Unit in der USES-Klausel Ihrer Bibliothek UND in der USES-Klausel Ihres Projekts
