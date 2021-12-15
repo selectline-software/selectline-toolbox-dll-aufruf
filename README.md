@@ -25,7 +25,7 @@ Weiterhin steht eine Funktionalität zur Verfügung, die einen beliebigen Text i
 
 Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung.
 Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht.
-In Zukunft wird es ein weiteres Beispiel geben, indem die Rückgabewerte Ihrer Funktionen an die Warenwirtschaft gesendet werden.
+In Zukunft wird es ein weiteres Beispiel geben, in dem die Rückgabewerte Ihrer Funktionen an die Warenwirtschaft gesendet werden.
 
 ## Funktionen mit Parametern aufrufen 
 
@@ -137,7 +137,7 @@ CFunctionAParams : array[0..CFunctionACount - 1] of TToolBoxFctParamW = (
 ```
 
 # Hinweise
-1.	An Parametern kann das Property `„IsDefault“` gesetzt werden. Dies gibt Auskunft, ob das jeweilige Property ein Pflichtfeld ist.
+1.	An Parametern kann das Property `„IsDefault“` gesetzt werden. Dies gibt Auskunft, ob das jeweilige Property ein Pflichtfeld ist. Falls Sie ein Parameter als Pflichtfeld kennzeichnen wollen, setzen Sie das Property `IsDefault` auf den Wert `true`.
 
 2.	Ebenfalls kann dort bestimmt werden, ob der Parameter zur Eingabe, Ausgabe oder generell zu beidem dient. (siehe `TToolBoxParamDirection`). Dabei steht `„tbxdIn“` für die Rückgabeparameter der DLL-Funktionalitäten und `„tbxdOut“` für die Eingabemöglichkeiten des Benutzers, die der DLL zugeschickt werden.
 
