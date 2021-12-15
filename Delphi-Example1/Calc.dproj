@@ -83,9 +83,9 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="DllCallWithParams\Model.pas"/>
-        <DCCReference Include="DllCallWithParams\DllInformation.pas"/>
-        <DCCReference Include="DllCallWithParams\Params.pas"/>
+        <DCCReference Include="Implementation\Model.pas"/>
+        <DCCReference Include="Implementation\DLLInformation.pas"/>
+        <DCCReference Include="Implementation\FunctionalityToExport.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

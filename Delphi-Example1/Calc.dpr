@@ -11,9 +11,9 @@ library Calc;
  }
 
 uses
-  Model in 'DllCallWithParams\Model.pas',
-  DllInformation in 'DllCallWithParams\DllInformation.pas',
-  Params in 'DllCallWithParams\Params.pas';
+  Model in 'Implementation\Model.pas',
+  DLLInformation in 'Implementation\DLLInformation.pas',
+  FunctionalityToExport in 'Implementation\FunctionalityToExport.pas';
 
 {$R *.res}
 

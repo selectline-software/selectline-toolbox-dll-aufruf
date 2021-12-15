@@ -1,4 +1,4 @@
-unit Params;
+unit FunctionalityToExport;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   System.IOUtils,
   Windows,
   Model,
-  DllInformation;
+  DLLInformation;
 
 
 implementation

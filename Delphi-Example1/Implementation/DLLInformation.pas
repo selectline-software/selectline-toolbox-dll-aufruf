@@ -1,4 +1,4 @@
-unit DllInformation;
+unit DLLInformation;
 
 interface
 
