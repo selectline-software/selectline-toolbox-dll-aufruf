@@ -11,7 +11,7 @@ const
 
 // --- information about parameter ----
 
-// --- parameter of function save to file  ----
+// --- parameter of function add up numbers  ----
   CAddUpNumbersParamsCount = 3;
   CAddUpNumbersParams : array[0..CAddUpNumbersParamsCount - 1] of TToolBoxFctParamW = (
     (
