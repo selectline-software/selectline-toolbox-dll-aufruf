@@ -1,14 +1,14 @@
 # Toolbox DLL-Aufruf
 
-In der SelectLine Warenwirtschaft gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit, einen Toolbox-DLL-Aufruf einzubinden.
+In der SelectLine Produkten (Warenwirtschaft, Rechnungswesen, ...) gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit, einen Toolbox-DLL-Aufruf einzubinden.
 
 ![image](https://user-images.githubusercontent.com/34538107/145825177-f2378e15-daff-4116-a39e-61caa2ac9660.png)
 
-Spezielle DLLs können dann von der SelectLine Warenwirtschaft angesprochen werden. Ebenso können hier Parameter an die DLL übergeben, als auch Ergebnisse zur Warenwirtschaft zurückgesendet werden.
+Spezielle DLLs können dann von den SelectLine Produkten angesprochen werden. Ebenso können hier Parameter an die DLL übergeben, als auch Ergebnisse zur bspw. Warenwirtschaft zurückgesendet werden.
 
 ![image](https://user-images.githubusercontent.com/34538107/145825729-28edc780-1297-40f1-9eb6-7108fc481bc3.png)
 
-Dafür stellt Ihnen die SelectLine Warenwirtschaft ebenfalls Ihre Funktionen und Eingabe-, als auch Ausgabeparameter optisch aufbereitet dar.
+Dafür stellt Ihnen das jeweilige SelectLine Produkt ebenfalls Ihre Funktionen und Eingabe-, als auch Ausgabeparameter optisch aufbereitet dar.
 
 ![image](https://user-images.githubusercontent.com/34538107/145825405-6bd74054-14a9-4b72-ae6c-f3386401c796.png)
 
@@ -23,9 +23,9 @@ Weiterhin steht eine Funktionalität zur Verfügung, die einen beliebigen Text i
 
 ![image](https://user-images.githubusercontent.com/34538107/145825540-72f961c4-a668-4fba-b21c-b4391b70b12e.png)
 
-Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung.
-Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht.
-In Zukunft wird es ein weiteres Beispiel geben, in dem die Rückgabewerte Ihrer Funktionen an die Warenwirtschaft gesendet werden.
+Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung. 
+Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht. 
+In Zukunft wird es ein weiteres Beispiel geben, in dem die Rückgabewerte Ihrer Funktionen an die SelectLine gesendet werden.
 
 ## Funktionen mit Parametern aufrufen 
 
@@ -43,7 +43,7 @@ exports
 
 3.	Schnittstellen Models implementieren (siehe vollständige Modelle am Ende unten)
 
-    a.	Darin werden Sie die Objekte zur Kommunikation mit der SelectLine Warenwirtschaft finden:
+    a.	Darin werden Sie die Objekte zur Kommunikation mit der SelectLine finden:
 
      * Enum zur Definition, um welche Art des Aufrufes es sich handelt
      
@@ -59,7 +59,7 @@ exports
 
 4.	Bereitstellen der Funktion `GetToolBoxInfoW` , die den Pointer zu Ihren DLL-Informationen vom Typen `PToolBoxFctsW` zurückgibt:
 
-    a.	Die dort zurückgebenen DLL-Informationen sehen Sie später in der SelectLine Warenwirtschaft, sobald Sie diese DLL in der SelectLine Warenwirtschaft eingebunden haben.
+    a.	Die dort zurückgebenen DLL-Informationen sehen Sie später in dem jeweiligen SelectLine Produkt, sobald Sie diese DLL in der SelectLine eingebunden haben.
 
 ```
 function GetToolBoxInfoW : PToolBoxFctsW; stdcall;
@@ -92,7 +92,7 @@ CDllInformation : TToolBoxFctsW =
 
 7.	Globale Konstanten zu den Funktionen der DLL definieren
 
-    a.	Damit bekommen Sie in der SelectLine Warenwirtschaft die Möglichkeit, die DLL-Funktionalitäten inkl. Parameter detailliert gelistet zu bekommen.
+    a.	Damit bekommen Sie in der SelectLine die Möglichkeit, die DLL-Funktionalitäten inkl. Parameter detailliert gelistet zu bekommen.
 
 ```
 CFunctionsCount  = 1;
@@ -141,13 +141,13 @@ CFunctionAParams : array[0..CFunctionACount - 1] of TToolBoxFctParamW = (
 
 2.	Ebenfalls kann dort bestimmt werden, ob der Parameter zur Eingabe, Ausgabe oder generell zu beidem dient. (siehe `TToolBoxParamDirection`). Dabei steht `„tbxdIn“` für die Rückgabeparameter der DLL-Funktionalitäten und `„tbxdOut“` für die Eingabemöglichkeiten des Benutzers, die der DLL zugeschickt werden.
 
-3.	Das Verwenden der Standardwerte für Parameter muss händisch von Ihnen programmiert werden. Dabei greifen Sie dann auf Ihre Konstanten zu, die Sie für die Anzeige in der Warenwirtschaft angelegt haben.
+3.	Das Verwenden der Standardwerte für Parameter muss händisch von Ihnen programmiert werden. Dabei greifen Sie dann auf Ihre Konstanten zu, die Sie für die Anzeige in der SelectLine angelegt haben.
 
 4.  DLL-Aufrufe sind möglich und mit überschaubarem Aufwand für Sie realisierbar, sofern Sie auf native Programmiersprachen, wie Delphi, zurückgreifen können.
 Dazu finden Sie ein Beispiel hier auf GitHub.
 Klare Hürden sehen wir in der Unterstützung von DLLs, die in z.B. noch einen Aufsatz, wie .NET Framework in C#, aufweisen. Daher entfällt deren Unterstützung von unserer Seite aus.
 
-# Modelle zur erfolgreichen Kommunikation mit der SelectLine Warenwirtschaft
+# Modelle zur erfolgreichen Kommunikation mit der SelectLine DLL Schnittstelle
 ```
 type
   TToolBoxCallKind  = ( tbxcNone, tbxcCall, tbxcCallMsg, tbxcCallParams, tbxcCallDBParams,
