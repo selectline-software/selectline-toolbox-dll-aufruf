@@ -143,6 +143,9 @@ CFunctionAParams : array[0..CFunctionACount - 1] of TToolBoxFctParamW = (
 
 3.	Das Verwenden der Standardwerte für Parameter muss händisch von Ihnen programmiert werden. Dabei greifen Sie dann auf Ihre Konstanten zu, die Sie für die Anzeige in der Warenwirtschaft angelegt haben.
 
+4.  DLL-Aufrufe sind möglich und mit überschaubarem Aufwand für Sie realisierbar, sofern Sie auf native Programmiersprachen, wie Delphi, zurückgreifen können.
+Dazu finden Sie ein Beispiel hier auf GitHub.
+Klare Hürden sehen wir in der Unterstützung von DLLs, die in z.B. noch einen Aufsatz, wie .NET Framework in C#, aufweisen. Daher entfällt deren Unterstützung von unserer Seite aus.
 
 # Modelle zur erfolgreichen Kommunikation mit der SelectLine Warenwirtschaft
 ```
