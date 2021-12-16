@@ -1,10 +1,10 @@
 # Toolbox DLL-Aufruf
 
-In der SelectLine Produkten (Warenwirtschaft, Rechnungswesen, ...) gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit, einen Toolbox-DLL-Aufruf einzubinden.
+In den SelectLine Produkten (Warenwirtschaft, Rechnungswesen, ...) gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit, einen Toolbox-DLL-Aufruf einzubinden.
 
 ![image](https://user-images.githubusercontent.com/34538107/145825177-f2378e15-daff-4116-a39e-61caa2ac9660.png)
 
-Spezielle DLLs können dann von den SelectLine Produkten angesprochen werden. Ebenso können hier Parameter an die DLL übergeben, als auch Ergebnisse zur bspw. Warenwirtschaft zurückgesendet werden.
+Spezielle DLLs können dann von den SelectLine Produkten angesprochen werden. Ebenso können hier Parameter an die DLL übergeben, als auch Ergebnisse bspw. zur Warenwirtschaft zurückgesendet werden.
 
 ![image](https://user-images.githubusercontent.com/34538107/145825729-28edc780-1297-40f1-9eb6-7108fc481bc3.png)
 
