@@ -23,9 +23,13 @@ Weiterhin steht eine Funktionalität zur Verfügung, die einen beliebigen Text i
 
 ![image](https://user-images.githubusercontent.com/34538107/145825540-72f961c4-a668-4fba-b21c-b4391b70b12e.png)
 
+Im zweiten Beispiel, welches in Delphi programmiert wurde, steht Ihnen eine DLL zur Verfügung, welche zwei Eingabewerte addiert und deren Ergebnis zurückgibt.
+Zum Schluss kann mithilfe der exportierten Prozedur FreeToolBoxResultsW(...) der Speicher des Rückgabeobjektes freigegeben werden.
+
+![dll-addupnumbers-with-result](https://user-images.githubusercontent.com/34538107/146389824-0d566c88-f417-4b3f-8bb0-a02aa24575ab.png)
+
 Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung. 
 Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht. 
-In Zukunft wird es ein weiteres Beispiel geben, in dem die Rückgabewerte Ihrer Funktionen an die SelectLine gesendet werden.
 
 ## Funktionen mit Parametern aufrufen 
 
