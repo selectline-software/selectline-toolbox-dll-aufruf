@@ -1,5 +1,10 @@
-# Toolbox DLL-Aufruf
+# Toolboc DLL-Aufruf und COM
 
+In diesem Repository finden Sie sowohl Beispiel für einen Dll-Aufruf aus der SelectLine Warenwirtschaft heraus als auch ein Beispiel für einen COM-Aufruf
+
+## Toolbox DLL-Aufruf
+
+### Einrichtung in der Warenwirtschaft
 In den SelectLine Produkten (Warenwirtschaft, Rechnungswesen, ...) gibt es unter "Eigene Daten > Makro Assistent" die Möglichkeit, einen Toolbox-DLL-Aufruf einzubinden.
 
 ![image](https://user-images.githubusercontent.com/34538107/145825177-f2378e15-daff-4116-a39e-61caa2ac9660.png)
@@ -31,7 +36,7 @@ Zum Schluss kann mithilfe der exportierten Prozedur FreeToolBoxResultsW(...) der
 Falls Sie selbst eine DLL bereitstellen wollen, empfehlen wir die folgende Anleitung. 
 Diese hilft Ihnen dabei eine DLL aufzusetzen, die Funktionen mit Eingabeparametern anspricht. 
 
-## Funktionen mit Parametern aufrufen 
+### Funktionen der DLL mit Parametern aufrufen 
 
 1.	Zunächst einmal ist eine Class Library zu erzeugen, die später unsere DLL darstellt.	
 2.	Eigene Funktionen implementieren
@@ -140,7 +145,7 @@ CFunctionAParams : array[0..CFunctionACount - 1] of TToolBoxFctParamW = (
 );
 ```
 
-# Hinweise
+### Hinweise zum DLL-Aufruf
 1.	An Parametern kann das Property `„IsDefault“` gesetzt werden. Dies gibt Auskunft, ob das jeweilige Property ein Pflichtfeld ist. Falls Sie ein Parameter als Pflichtfeld kennzeichnen wollen, setzen Sie das Property `IsDefault` auf den Wert `true`.
 
 2.	Ebenfalls kann dort bestimmt werden, ob der Parameter zur Eingabe, Ausgabe oder generell zu beidem dient. (siehe `TToolBoxParamDirection`). Dabei steht `„tbxdIn“` für die Rückgabeparameter der DLL-Funktionalitäten und `„tbxdOut“` für die Eingabemöglichkeiten des Benutzers, die der DLL zugeschickt werden.
@@ -151,7 +156,7 @@ CFunctionAParams : array[0..CFunctionACount - 1] of TToolBoxFctParamW = (
 Dazu finden Sie ein Beispiel hier auf GitHub.
 Klare Hürden sehen wir in der Unterstützung von DLLs, die in z.B. noch einen Aufsatz, wie .NET Framework in C#, aufweisen. Daher entfällt deren Unterstützung von unserer Seite aus.
 
-# Modelle zur erfolgreichen Kommunikation mit der SelectLine DLL Schnittstelle
+### Modelle zur erfolgreichen Kommunikation mit der SelectLine DLL Schnittstelle
 ```
 type
   TToolBoxCallKind  = ( tbxcNone, tbxcCall, tbxcCallMsg, tbxcCallParams, tbxcCallDBParams,
@@ -210,3 +215,16 @@ type
   end;
   PToolBoxFctsW  = ^TToolBoxFctsW;
 ```
+
+## COM-Aufruf
+Im Beispiel für einen COM-Aufruf wird ein .NET ClassLibrary mit C# gezeigt. Diese können Sie direkt beim Bauen in Visual Studio als COM registrieren oder aber anschließend per `REGASM.EXE`:
+
+`C:\Windows\Microsoft.NET\Framework64\v4.0.30319\REGASM.EXE COMClassLibrary.dll /tlb`
+
+![image](https://user-images.githubusercontent.com/52783185/146541680-97deac86-ffd3-488a-a4b5-d98d27c55eb6.png)
+
+Im Makro-Assistenten  der Warenwirtschaft wählen Sie bei "Server" `localhost` und bei "Schnittstelle" die ProgId (hier im Beispiel "SelectLine.COMDemo1").
+
+![image](https://user-images.githubusercontent.com/52783185/146541578-d8f06e11-296d-41c0-99ad-7387481e5b6f.png)
+
+Die COM-DLL selbst erzeugt je nach Aufrufart eine Textdatei auf D:\ in der die ggf. mitgesendeten Parameter angezeigt werden.
