@@ -43,9 +43,22 @@ const
     )
   );
 
+  // --- parameter of function report exception  ----
+  CReportExceptionParamsCount = 1;
+  CReportExceptionParams : array[0..CReportExceptionParamsCount - 1] of TToolBoxFctParamW = (
+    (
+      Size         : sizeof(TToolBoxFctParamW);
+      Name         : 'msg';
+      Description  : 'exception message';
+      Typ          : tbxtString;
+      Direction    : tbxdOut;
+      IsDefault    : false;
+    )
+  );
+
 
 // --- information about functions ----
-  CFunctionsCount  = 1;
+  CFunctionsCount  = 2;
   CFunctionsInfo : array[0..CFunctionsCount - 1] of TToolBoxFctInfoW =
   (
     (
@@ -55,6 +68,14 @@ const
       Kind        : tbxcCallParamsResult;
       ParamsCount : CAddUpNumbersParamsCount;
       Params      : @CAddUpNumbersParams;
+    ),
+    (
+      Size        : sizeof(TToolBoxFctInfoW);
+      Name        : 'ReportException';
+      Description : 'throw exception with a message';
+      Kind        : tbxcCallMsg;
+      ParamsCount : CReportExceptionParamsCount;
+      Params      : @CReportExceptionParams;
     )
   );
 

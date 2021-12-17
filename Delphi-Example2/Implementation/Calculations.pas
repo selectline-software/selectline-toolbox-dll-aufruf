@@ -6,6 +6,7 @@ uses
   System.SysUtils,
   System.Classes,
   System.IOUtils,
+  Windows,
   Model;
 
 implementation
@@ -42,7 +43,17 @@ begin
   aResults := BuildResults(['result'], [result.ToString]);
 end;
 
+procedure ReportException(const aMsg : PWideChar); stdcall;
+begin
+  try
+    raise Exception.Create('report exception: ' + aMsg);
+  except on e: Exception do
+    MessageBoxW(0, e.Message, 'Calculator', MB_ICONINFORMATION);
+  end;
+end;
+
 exports
-  AddUpNumbers;
+  AddUpNumbers,
+  ReportException;
 
 end.
